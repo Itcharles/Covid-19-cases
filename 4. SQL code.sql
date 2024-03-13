@@ -55,3 +55,27 @@ ORDER BY PercentPopulationInfected DESC
 
 
 Outcome is over 362 thousand rows.
+
+Changing blank filed to 0:
+UPDATE portfolio.covid_vaccinations_csv
+SET people_vaccinated  = 0
+WHERE people_vaccinated  = '';
+
+
+Changing data type form from varchar(50) to bigint:
+ALTER TABLE portfolio.covid_vaccinations_csv
+MODIFY COLUMN people_vaccinated BIGINT NULL;
+
+
+5. Total People vaccinated by Country 
+  
+SELECT dea.continent, dea.location, dea.population
+, MAX(vac.people_vaccinated) AS PeopleVaccinated, ROUND((MAX(vac.people_vaccinated)/dea.population)*100,0) as PercentageVaccinated
+FROM Portfolio.Covid_cases_csv dea
+JOIN Portfolio.Covid_Vaccinations_csv vac
+	On dea.location = vac.location
+	and dea.date = vac.date
+WHERE LENGTH(dea.continent)>0 
+GROUP BY dea.continent, dea.location, dea.population
+ORDER BY PeopleVaccinated DESC;
+
