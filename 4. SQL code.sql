@@ -56,13 +56,17 @@ ORDER BY PercentPopulationInfected DESC
 
 Outcome is over 362 thousand rows.
 
+2 step data manipulation in order to perform query 5:
+	
 Changing blank filed to 0:
+	
 UPDATE portfolio.covid_vaccinations_csv
 SET people_vaccinated  = 0
 WHERE people_vaccinated  = '';
 
 
 Changing data type form from varchar(50) to bigint:
+	
 ALTER TABLE portfolio.covid_vaccinations_csv
 MODIFY COLUMN people_vaccinated BIGINT NULL;
 
