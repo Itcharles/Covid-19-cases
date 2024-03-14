@@ -7,7 +7,7 @@ data_path = 'https://github.com/Itcharles/Data-Analyst-Project---Covid-cases/blo
 covid_data = pd.read_url(data_path)
 
 
-# Query 1: Total number of cases and deaths and the mortality rate
+#1 Query: Total number of cases and deaths and the mortality rate
 
 # Filter rows to include only those with a non-empty value in the 'continent' column
 filtered_data = covid_data[covid_data['continent'].notna()]
@@ -25,15 +25,46 @@ aggregated_data['death_percentage'] = (aggregated_data['total_deaths'] / aggrega
 print(aggregated_data) 
 
 
-#Query 2:  Total Death by continent:
+#2 Query:  Total Death by continent:
 
 aggregated_data2 = filtered_data.groupby('continent')['new_deaths'].sum()\
     .reset_index(name='Total Deaths').sort_values(by='Total Deaths',\
                                                       ascending=False).reset_index(drop=True)
+
+
 # We need start indexing from 1:
 aggregated_data2.index += 1
 
 #Our second data to visualize:
 print(aggregated_data2)
+
+
+#3 Query: People infected and percentage infected per country:
+
+# Aggregating data to calculate the maximum number of infected individuals
+aggregated_data3 = (filtered_data.groupby(['location', 'population'])
+                    .agg(TotalPeopleInfected=('total_cases', 'max'))
+                    .reset_index())
+
+# Calculating the percentage of the population that is infected
+aggregated_data3['PercentagePopulationInfected'] = (aggregated_data3['TotalPeopleInfected'] / aggregated_data3['population']) * 100
+
+# Sorting the data by the percentage of the population that is infected
+aggregated_data3 = aggregated_data3.sort_values(by='PercentagePopulationInfected', ascending=False)
+
+# Our 3 data to visualize:
+print(aggregated_data3)
+
+
+#4 Query: Total people infecttion history per country:
+
+
+
+
+
+
+
+
+
 
 
