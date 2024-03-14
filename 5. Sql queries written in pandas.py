@@ -3,8 +3,8 @@ import pandas as pd
 
 
 # Load data
-data_path = ' Your directory \\Covid cases.xlsx'
-covid_data = pd.read_url(data_path)
+data_path = ' Your directory \\Covid cases csv'
+covid_data = pd.read_csv(data_path)
 
 
 #1 QUERY: Total number of cases and deaths and the mortality rate
