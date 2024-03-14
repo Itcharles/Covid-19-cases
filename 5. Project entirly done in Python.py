@@ -56,10 +56,25 @@ aggregated_data3 = aggregated_data3.sort_values(by='PercentagePopulationInfected
 print(aggregated_data3)
 
 
-#4 Query: Total people infecttion history per country:
+#4 Query: Total people infection history per country:
+
+# Aggregating data to calculate the maximum number of infected individuals
+aggregated_data4 = (filtered_data.groupby(['location', 'population', 'date'])
+                    .agg(TotalPeopleInfected=('total_cases', 'max'))
+                    .reset_index())
+
+# Calculating the percentage of the population that is infected
+aggregated_data4['PercentagePopulationInfected'] = (aggregated_data4['TotalPeopleInfected'] / aggregated_data3['population']) * 100
+
+# Sorting the data by the percentage of the population that is infected
+aggregated_data4 = aggregated_data4.sort_values(by='PercentagePopulationInfected', ascending=False)
+
+# Our 4 data to visualize:
+print(aggregated_data4)
 
 
 
+VISUALIZATION:
 
 
 
