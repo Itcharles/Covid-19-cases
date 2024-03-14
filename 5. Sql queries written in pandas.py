@@ -3,7 +3,7 @@ import pandas as pd
 
 
 # Load data
-data_path = 'https://github.com/Itcharles/Data-Analyst-Project---Covid-cases/blob/099eceed7a11db3d2444ddffeabf3c834968416c/1.%20Covid%20cases.xlsx'
+data_path = ' Your directory \\Covid cases.xlsx'
 covid_data = pd.read_url(data_path)
 
 
