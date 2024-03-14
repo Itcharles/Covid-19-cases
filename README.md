@@ -17,4 +17,4 @@ Together, these queries offer a comprehensive look at the COVID-19 pandemic's im
 Original data is in excel format.
 Queries were written in mysql environment.
 Visualization has been made in Tableau.
-Alternatively the whole project has been made in Python using pandas and matplotlib libraries.
+Alternatively I transformed SQL queries into code Python by using pandas library.
