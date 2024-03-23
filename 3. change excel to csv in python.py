@@ -1,8 +1,8 @@
 import pandas as pd
 
 # Loading excel files.
-df1 = pd.read_excel('C:\\ Your directory \\Covid cases.xlsx')
-df2 = pd.read_excel('C:\\ Your directory \\Covid vaccinations.xlsx')
+df1 = pd.read_excel(' Your directory \\Covid cases.xlsx')
+df2 = pd.read_excel(' Your directory \\Covid vaccinations.xlsx')
 
 # We need to change population column to float type in Covid cases.xlsx otherwise we will no be able to load the data to SQL:
 if 'population' in df1.columns:
